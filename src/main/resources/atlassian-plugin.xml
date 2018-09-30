@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="issuereport"/>
+  <!-- add our web resources -->
+  <web-resource key="issuereport-resources" name="issuereport Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="issuereport.css" location="/css/issuereport.css"/>
+    <resource type="download" name="issuereport.js" location="/js/issuereport.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>issuereport</context>
+  </web-resource>
+  <report name="Issue Report" i18n-name-key="issue-report.name" key="issue-report" class="com.seriousbisiness.jira.plugin.reports.IssueReport">
+    <description key="issue-report.description">The Issue Report Plugin</description>
+    <resource name="view" type="velocity" location="/templates/reports/issue-report/view.vm"/>
+    <resource name="i18n" type="i18n" location="IssueReport"/>
+    <label key="issue-report.label"/>
+    <properties>
+      <property>
+        <key>dueDate</key>
+        <name>Due Date</name>
+        <description>Due Date description</description>
+        <type>date</type>
+      </property>
+    </properties>
+  </report>
+</atlassian-plugin>
